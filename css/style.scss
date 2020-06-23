@@ -1,0 +1,200 @@
+$linearGradient: linear-gradient(#a3a8f0, #696fdd);
+$veryLightGrayishBlue: hsl(240, 78%, 98%);
+$lightGrayishBlue: hsl(234, 14%, 74%);
+$grayishBlue: hsl(233, 13%, 49%);
+$darkGrayishBlue: hsl(232, 13%, 33%);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 80%;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    > h1 {
+        text-align: center;
+        margin: 4rem 0;
+        color: $darkGrayishBlue;
+    }
+}
+
+.card a {
+    padding: 1em;
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    text-transform: uppercase;
+    background: $linearGradient;
+    border-radius: 10px;
+    margin-top: 25px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.card a:hover {
+    border: 2px solid $lightGrayishBlue;
+    background: transparent;
+    // color: linear-gradient(#a3a8f0, #696fdd);
+    color: #a3a8f0;
+}
+
+.active a:hover {
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+body {
+    position: relative;
+    font-family: 'Montserrat',sans-serif;
+    font-size: 15px;
+    background: url('../images/bg-top.svg') $veryLightGrayishBlue no-repeat;
+    background-attachment: fixed;
+    background-position: 250px -30px;
+    // background-position: right -30px;
+    background-size: cover;
+    color: $grayishBlue;
+}
+
+@mixin pseudo() {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: $lightGrayishBlue;
+}
+
+input[type="checkbox"] {
+    position: relative;
+    width: 20%;
+    height: 30px;
+    max-width: 75px;
+    appearance: none;
+    background: $linearGradient;
+    border-radius: 20px;
+}
+
+input[type="checkbox"]:hover {
+    opacity: 0.7;
+}
+
+input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    transition: 200ms;
+}
+
+input:checked[type="checkbox"]::before {
+    left: 75%;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4rem;
+
+    input {
+        margin: 0 2em;
+    }
+}
+
+.card {
+    background: #ffffff;
+    padding: 2.5em 2em;
+    text-align: center;
+    border-radius: 10px;
+    color: $grayishBlue;
+    box-shadow: 2px 2px 20px #8080806e;
+    margin: 0 auto;
+    max-width: 350px;
+
+    .one {
+        font-weight: 700;
+        font-size: 350%;
+        // font-size: 4em;
+        color: $darkGrayishBlue;
+        margin: 2rem 0 2rem;
+    }
+
+    p:not(.one) {
+        margin-top: 1em;
+        font-weight: 700;
+    }
+
+    p:not(.one)::before {
+        @include pseudo();
+        margin-bottom: 1em;
+    }
+
+    .four::after {
+        @include pseudo();
+        margin-top: 1em;
+    }
+
+    #one, #two, #three {
+        transition: all 200ms;
+    }
+}
+
+.card + .card {
+    margin-top: 2rem;
+} 
+
+.active {
+    background: $linearGradient;
+    color: #fff;
+
+    #two {
+        color: #fff;
+    }
+
+    a {
+        background: #fff;
+        color: #000000;
+    }
+}
+
+.attribution { font-size: 11px; text-align: center; position: absolute; bottom: -170px; left: 50%; transform: translateX(-50%);}
+.attribution a { color: hsl(228, 45%, 44%); }
+
+$desktop: 900px;
+
+@media(min-width: $desktop) {
+    body {
+        background: none;
+        background: url('../images/bg-top.svg') right top no-repeat, url('../images/bg-bottom.svg') -200px 500px no-repeat;
+        background-color: $veryLightGrayishBlue;
+        // background-position: 200px 5px;
+        background-size: contain;
+    }
+
+    .grid {
+        display: grid;
+        justify-content: center;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        .card {
+            margin: 0rem;
+            max-width: 460px;
+        }
+        
+        .active {
+            // margin: 5rem 0;
+            // width: 100%;
+            // height: 600px;
+            transform: scale(1.1);
+        }
+    }
+}
